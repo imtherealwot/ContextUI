@@ -7,7 +7,7 @@ export default function WordCloudCard() {
 
 
   useEffect(() => {
-  axios.get("http://localhost:8000/wordcloud")
+  axios.get(`${import.meta.env.VITE_BACKEND_URL}/wordcloud`)
     .then((res) => {
       console.log("WORDCLOUD RESPONSE:", res.data);
 

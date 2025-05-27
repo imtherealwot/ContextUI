@@ -9,7 +9,7 @@ export default function StatsCard() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/stats")
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/stats`)
       .then(response => {
         setStats(response.data);
         setLoading(false);
@@ -24,7 +24,7 @@ export default function StatsCard() {
   
     setActiveFile(filename);
     try {
-      const res = await axios.get(`http://localhost:8000/file/${encodeURIComponent(filename)}/chunks`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/file/${encodeURIComponent(filename)}/chunks`);
       setSelectedChunks(res.data.chunks);
     } catch (err) {
       console.error("Error fetching chunks:", err);
@@ -35,7 +35,7 @@ export default function StatsCard() {
   const handleDelete = async (chunkId) => {
     console.log("Deleting chunk:", chunkId);
     try {
-      await axios.delete(`http://localhost:8000/upload/chunks/${chunkId}`);
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/upload/chunks/${chunkId}`);
       setSelectedChunks(prev => prev.filter(c => c._id !== chunkId));
     } catch (err) {
       console.error("Failed to delete chunk:", err);
@@ -110,7 +110,7 @@ export default function StatsCard() {
             <button
               onClick={async () => {
                 try {
-                  await axios.delete(`http://localhost:8000/upload/chunks/${chunk._id}`);
+                  await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/upload/chunks/${chunk._id}`);
                   setSelectedChunks(prev => prev.filter(c => c._id !== chunk._id));
                 } catch (err) {
                   console.error("Failed to delete chunk:", err);

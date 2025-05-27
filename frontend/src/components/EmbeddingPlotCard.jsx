@@ -6,7 +6,7 @@ export default function EmbeddingPlotCard() {
   const [points, setPoints] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/embedding-plot")
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/embedding-plot`)
       .then(res => {
         setPoints(res.data.points);
       })

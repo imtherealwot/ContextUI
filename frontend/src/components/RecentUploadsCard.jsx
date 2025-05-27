@@ -5,7 +5,7 @@ export default function RecentUploadsCard() {
   const [recentUploads, setRecentUploads] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/stats")
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/stats')
       .then((res) => {
         setRecentUploads(res.data?.recent_uploads || []);
       })

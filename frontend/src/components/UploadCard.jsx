@@ -43,7 +43,8 @@ export default function UploadCard() {
     formData.append("file", selectedFile);
 
     try {
-      const res = await axios.post("http://localhost:8000/upload/", formData, {
+      console.log("Uploading to:", `${import.meta.env.VITE_BACKEND_URL}/upload`);
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
       setResponse(res.data);

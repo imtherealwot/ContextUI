@@ -32,7 +32,7 @@ export default function QueryCard() {
 
       console.log("🚀 Sending query payload:", payload);
 
-      const res = await axios.post("http://localhost:8000/query/", payload);
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/query/`, payload);
       const result = res.data;
 
       setAnswer(result.answer || "No answer received.");
